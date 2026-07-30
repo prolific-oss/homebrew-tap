@@ -33,4 +33,3 @@ jobs:
       - run: make lint
 
       - run: make test
-        if: github.event_name == 'pull_request'

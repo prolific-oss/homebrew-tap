@@ -1,6 +1,5 @@
 TAP := prolific-oss/tap
 FORMULA := prolific
-REPO := prolific-oss/cli
 
 tapdir := $$(brew --repository)/Library/Taps/$$(dirname $(TAP))/homebrew-$$(basename $(TAP))
 
