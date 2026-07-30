@@ -3,8 +3,12 @@ FORMULA := prolific
 
 tapdir := $$(brew --repository)/Library/Taps/$$(dirname $(TAP))/homebrew-$$(basename $(TAP))
 
+.PHONY: provision-local
+provision-local:
+	brew bundle install --file=Brewfile
+
 .PHONY: lint
-lint: tap
+lint: tap provision-local
 	brew style Formula/$(FORMULA).rb
 	brew audit --strict $(TAP)/$(FORMULA)
 	shellcheck scripts/*.sh

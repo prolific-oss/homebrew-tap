@@ -19,18 +19,30 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Cache Homebrew Bundler RubyGems
-        id: cache
+      - name: Homebrew Cellar path
+        id: brew-cellar
+        run: echo "path=$(brew --cellar)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Homebrew dependencies
+        id: cache-deps
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
-          path: ${{ steps.set-up-homebrew.outputs.gems-path }}
-          key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
-          restore-keys: ${{ runner.os }}-rubygems-
+          path: |
+            ${{ steps.set-up-homebrew.outputs.gems-path }}
+            ${{ steps.brew-cellar.outputs.path }}
+          key: ${{ runner.os }}-brew-deps-${{ steps.set-up-homebrew.outputs.gems-hash }}-${{ hashFiles('Brewfile') }}
 
-      - name: Install Homebrew Bundler RubyGems
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: brew install-bundler-gems
+      - name: Install Homebrew dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: |
+          brew install-bundler-gems
+          brew bundle install --file=Brewfile
 
       - run: make lint
 
       - run: make test
+
+      # Keep prolific-cli out of the cached Cellar
+      # it's not a Brewfile dependency, so a cache hit next run would restore it unlinked.
+      - run: make uninstall
+        if: always()
