@@ -5,23 +5,23 @@ class Prolific < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/prolific-oss/cli/releases/download/v1.2.3/prolific-darwin-arm64"
-      sha256 "0725996693a38d5904166b398fc8936b0d93057618976fc52bb7e854701b4730"
+      url "https://github.com/prolific-oss/cli/releases/download/v1.2.4/prolific-darwin-arm64"
+      sha256 "43ba16a807f760fc273d78bf9a3599799b641b0dc34605b369658c2e56def7b1"
     end
     on_intel do
-      url "https://github.com/prolific-oss/cli/releases/download/v1.2.3/prolific-darwin-amd64"
-      sha256 "150fe630ba448f4072e2dcb03379601766bbe5ae6962f4fd6e028c3ebe839f2d"
+      url "https://github.com/prolific-oss/cli/releases/download/v1.2.4/prolific-darwin-amd64"
+      sha256 "4c6023427c2586ebee428ecef0e0f59875c6a5a7445edb4f003e8cb1b3638972"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/prolific-oss/cli/releases/download/v1.2.3/prolific-linux-arm64"
-      sha256 "aef95a38648804594c77a33948d86fc1974c59c7a4d32aa578b821501674e5eb"
+      url "https://github.com/prolific-oss/cli/releases/download/v1.2.4/prolific-linux-arm64"
+      sha256 "831875c2f3031133094929e7ef6b487d9bf56e3fbc47fe77e8e11cc396a2c2e6"
     end
     on_intel do
-      url "https://github.com/prolific-oss/cli/releases/download/v1.2.3/prolific-linux-amd64"
-      sha256 "33eb7818e0472d17515e0b4684db89cbb49c4c43da717035ee16efb9ecad5fd0"
+      url "https://github.com/prolific-oss/cli/releases/download/v1.2.4/prolific-linux-amd64"
+      sha256 "4c690a49dca34624357dd6fa12e632360bfa500146c99fbc616ba3e870018a23"
     end
   end
 
